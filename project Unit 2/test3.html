@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #five {
+        border: chartreuse solid;
+        /* height: 700px; */
+        width: 100%;
+        padding-left: 7%;
+        font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+      }
+
+      #five input{
+          height: 35px;
+          width: 30%;
+          border-radius: 3px;
+          margin-bottom: 18px;
+          border-color: rgb(202, 202, 202);
+          padding-left: 1%;
+      }
+
+      #five input:focus{
+          outline: none;
+          border: 3px solid navy;
+          border-radius: 7px;
+      }
+
+      #five p {
+          color: rgb(97,97,97);
+          font-size: 13px;
+      }
+
+      #five h5{
+        font-size: 13px;
+        color: rgb(97,97,97); 
+        /* margin-top: 0px; */
+      }
+      #five h1{
+          font-size: 20px;
+          margin-top: 0px;
+
+      }
+      #five label{
+        display: block;
+        font-size: 13px;
+        color: rgb(97,97,97);
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="five">
+      <div>
+        <h1>Manage your booking</h1>
+        <hr />
+        <h4>Confirmation email</h4>
+        <p>
+          Please enter the email address where you would like to receive your
+          confirmation.
+        </p>
+          <label for=""> Email address <span><sup>*</sup></span></label> 
+        <input type="text" name="" id="" style="width: 50%;" />
+        <hr />
+        <h4>Create an account</h4>
+        <p>
+          Easily access your itinerary when you create an account using the
+          email address above.
+        </p>
+        <label for="">Create password</label>
+        <input type="text" name="" id="" placeholder="6 - 30 characyers, no spaces"/>
+        <label for="">Confirm password</label>
+        <input type="text" name="" id="" />
+        <p>
+          By creating an account, I agree to the
+          <a href="">Orbitz Rewards Terms and Conditions.</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

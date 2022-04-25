@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns:(12, 1fr);
+            grid-template-rows: 100px 150px 150px 150px;
+            grid-template-areas: 
+            "n n n n n n n n n n n n"
+            "L1 L1 L1 L1 L1 L1 L1 L1 L1 R1 R1 R1"
+            "L1 L1 L1 L1 L1 L1 L1 L1 L1 R2 R2 R2"
+            "L1 L1 L1 L1 L1 L1 L1 L1 L1 R3 R3 R3";
+        }
+       
+        .nav {
+            grid-area: n;
+            background-color: yellow;
+        }
+        .L1{
+            grid-area: L1;
+            background-color: red;
+        }
+        .R1 {
+            grid-area: R1;
+            background-color: green;
+        }
+        .R2 {
+            grid-area: R2;
+            background-color: green;
+        }
+        .R3 {
+            grid-area: R3;
+            background-color: green;
+        }
+        @media screen and (min-width:321px) and (max-width: 720px){
+            .container {
+                grid-template-rows: 50px 100px 100px 100px;
+                grid-template-areas:
+                "n n n n n n n n n n n n"
+                "L1 L1 L1 L1 L1 L1 L1 L1 L1 L1 L1 L1"
+                "L1 L1 L1 L1 L1 L1 L1 L1 L1 L1 L1 L1"
+                "R1 R1 R1 R1 R2 R2 R2 R2 R3 R3 R3 R3";
+            }
+            
+        }
+        @media screen and (min-width:0px) and (max-width: 320px){
+            .container {
+                grid-template-rows: 50px 100px 100px 100px 100px 100px;
+                grid-template-areas:
+                "n n n n n n n n n n n n"
+                "L1 L1 L1 L1 L1 L1 L1 L1 L1 L1 L1 L1"
+                "L1 L1 L1 L1 L1 L1 L1 L1 L1 L1 L1 L1"
+                "R1 R1 R1 R1 R1 R1 R1 R1 R1 R1 R1 R1"
+                "R2 R2 R2 R2 R2 R2 R2 R2 R2 R2 R2 R2" 
+                "R3 R3 R3 R3 R3 R3 R3 R3 R3 R3 R3 R3";
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav"></div>
+        <div class="L1"></div>
+        <div class="R1"></div>
+        <div class="R2"></div>
+        <div class="R3"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        #container {
+            width: 350px;
+            height: 600px;
+            margin: auto;
+            /* border: 2px solid rgb(196, 196, 196); */
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            font-family: "Amazon Ember", Arial, sans-serif;
+        }
+
+        #imagediv {
+            height: 10%;
+            width: 100%;
+            /* border: solid; */
+            text-align: center;
+        }
+
+        img {
+            width: 35%;
+            margin: auto;
+            height: 100%;
+        }
+
+        #formdiv {
+            border: 1px solid rgb(223, 223, 223);
+            height: 90%;
+            width: 100%;
+            padding: 4%;
+            margin: auto;
+            border-radius: 4px;
+            /* text-align: center; */
+        }
+
+        #formdiv div {
+            margin-bottom: 8%;
+            /* margin: 6% auto; */
+        }
+
+        label, .left {
+            font-size: 13px;
+            text-align: left;
+            font-weight: bold;
+        }
+        #formdiv input {
+            width: 98%;
+            height: 28px;
+            /* margin: ; */
+            border: 1px solid rgb(199, 199, 199);
+            border-radius: 4px;
+            /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        }
+
+        #formdiv input:focus {
+            /* box-shadow: rgba(206, 165, 51, 0.25) 0px 54px 55px, rgba(212, 150, 69, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+            /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+            box-shadow: rgba(224, 176, 44, 3.35) 2px 5px 15px;
+            border: 0;
+        }
+
+        #heading {
+            font-size: xx-large;
+        }
+
+        #submit {
+        /* margin-top: 8%;  */
+        width: 30%; 
+        background-color: rgb(242,201,101); 
+        /* color: white; */
+        border-radius: 4px;
+        height: 40px;
+        }
+    </style>    
+</head>
+<body>
+    <div id="container">
+        <div id="imagediv">
+            <img src="https://images.indianexpress.com/2015/05/amazon-logo-759.jpg" alt="">
+        </div>
+        <div id="formdiv">
+            <form>
+                <p id="heading">Create Account</p>
+                <label for="name"> Your name </label>
+                <div><input type="text" id="name"></div>
+
+                <label for="mobile"> Mobile number or email </label>
+                <div><input type="text" id="mobile"></div>
+
+                <label for="pass"> Password </label>
+                <div>
+                    <input type="password" id="pass">
+                    <p style="line-height: 0;font-size: small;color: rgb(97, 97, 97);">Passwords must be at least 6 characters.</p>
+                    <p id="warn1" style="line-height: 0;font-size: small;color: rgb(218, 14, 14);"></p>
+                </div>
+
+                <label for="passagain"> Password again</label>
+                <div style="margin-bottom: 6%;">
+                    <input type="password" id="passagain">
+                    <p id="warn2" style="line-height: 0;font-size: small;color: rgb(218, 14, 14);"></p>
+                </div>
+
+                <div><input type="submit" value="Continue" id="submit" style="height: 38px;width: 100%; border: 1px solid rgb(141, 103, 8);font-size: 16px;"></div>
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    document.querySelector("form").addEventListener("submit", run);
+    var arr = JSON.parse(localStorage.getItem("userLogin")) || [];
+
+    function run(event) {
+        event.preventDefault();
+        
+        document.querySelector("#warn1").textContent = "";
+        document.querySelector("#warn2").textContent = "";
+
+        var name = document.querySelector("#name").value;
+
+        var mobile = document.querySelector("#mobile").value;
+
+        var password = document.querySelector("#pass").value;
+
+        var passagain = document.querySelector("#passagain").value;
+
+        if(password.length < 6) {
+            document.querySelector("#warn1").textContent = "Password must be 6 characters long."
+            return 0;
+        }
+
+        else if( password != passagain) {
+            document.querySelector("#warn2").textContent = " Both passwords are different."
+            return 0;
+        }
+
+        else {
+            var obj = {
+                Name : name,
+                Mobile : mobile,
+                Password : password
+            };
+            arr.push(obj);
+
+            localStorage.setItem("userLogin",JSON.stringify(arr));
+        }
+        console.log(arr);
+        alert("Sign Up Successfull");
+        window.location.href='login.html';
+    }
+</script>

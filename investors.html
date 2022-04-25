@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masai Investors</title>
+    <style>
+      #box {
+        display: grid;
+        grid-gap: 25px;
+        grid-template-columns: repeat(4, 1fr);
+        /* border: 1px solid black; */
+      }
+      #box > div {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 8px;
+        text-align: center;
+        font-family: sans-serif;
+      }
+
+      img{
+          width: 100%;
+      }
+      h5{
+          margin-top: 0px;
+          color: rgb(164,160,161);
+      }
+      h2{
+          margin-bottom: 3px;
+          margin-top: 8px;
+      }
+
+      @media screen and (min-width: 321px) and (max-width: 721px) {
+        #box {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media screen and (min-width: 0) and (max-width: 321px) {
+        #box {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+  </body>
+</html>
+
+<script>
+  var data = [
+    {
+      name: "Ankush Sachdeva",
+      image:
+        "https://d27028dliefpk3.cloudfront.net/assets/our-investors/ankush-sachdeva-sharechat.jpg",
+      role: "Co-founder and CEO, ShareChat",
+    },
+    {
+      name: "Bhanu Pratap Singh",
+      image:
+        "https://d27028dliefpk3.cloudfront.net/assets/our-investors/bhanu-pratap-singh-sharechat.jpg",
+      role: "Co-founder and CTO, ShareChat",
+    },
+    {
+      name: "Farid Ahsan",
+      image:
+        "https://d27028dliefpk3.cloudfront.net/assets/our-investors/farid-ahsan-sharechat.png",
+      role: "Co-founder and COO, ShareChat",
+    },
+    {
+      name: "Amit Kumar Agarwal",
+      image:
+        "https://d27028dliefpk3.cloudfront.net/assets/our-investors/amit-kumar-agarwal-nobroker.jpg",
+      role: "Founder and CEO, NoBroker",
+    },
+  ];
+
+  data.map(function (items) {
+    var div = document.createElement("div");
+
+    var Image = document.createElement("img");
+    Image.setAttribute("src", items.image);
+
+    var head2 = document.createElement("h2");
+    head2.textContent = items.name;
+
+    var head5 = document.createElement("h5");
+    head5.textContent = items.role;
+
+    div.append(Image, head2, head5);
+
+    document.querySelector("#box").append(div);
+  });
+</script>

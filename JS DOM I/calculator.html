@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      body {
+        background-color: rgb(14, 68, 64);
+      }
+
+      .container {
+        width: 350px;
+        margin: 5% auto;
+        padding: 2%;
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(5, 80px);
+        grid-gap: 20px;
+        grid-template-areas:
+          "a a a a a a a a a"
+          "b b b c c c d d d"
+          "e e e f f f g g g"
+          "h h h i i i j j j"
+          "k k k l l l m m m";
+      }
+
+      .container > button {
+        background-color: black;
+        border-radius: 10px;
+        font-size: 25px;
+        color: white;
+      }
+
+      #one {
+        grid-area: a;
+        font-size: 30px;
+        text-align: right;
+        border-radius: 10px;
+        /* background-color: yellowgreen; */
+      }
+
+      #two {
+        grid-area: b;
+      }
+
+      #three {
+        grid-area: c;
+      }
+
+      #four {
+        grid-area: d;
+      }
+
+      #five {
+        grid-area: e;
+      }
+
+      #six {
+        grid-area: f;
+      }
+
+      #seven {
+        grid-area: g;
+      }
+
+      #eight {
+        grid-area: h;
+      }
+
+      #nine {
+        grid-area: i;
+      }
+
+      #ten {
+        grid-area: j;
+      }
+
+      #eleven {
+        grid-area: k;
+      }
+
+      #twelve {
+        grid-area: l;
+        background-color: brown;
+      }
+
+      #thirteen {
+        grid-area: m;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input type="number" name="" id="one" value="" />
+      <button onclick="oneClick()" id="two">1</button>
+      <button onclick="twoClick()" id="three">2</button>
+      <button onclick="threeClick()" id="four">3</button>
+      <button onclick="fourClick()" id="five">4</button>
+      <button onclick="fiveClick()" id="six">5</button>
+      <button onclick="sixClick()" id="seven">6</button>
+      <button onclick="sevenClick()" id="eight">7</button>
+      <button onclick="eightClick()" id="nine">8</button>
+      <button onclick="nineClick()" id="ten">9</button>
+      <button onclick="zeroClick()" id="eleven">0</button>
+      <button onclick="clrClick()" id="twelve">CLR</button>
+    </div>
+  </body>
+</html>
+
+<script>
+  function oneClick() {
+    var x = +document.getElementById("two").textContent;
+    document.getElementById("one").value += x;
+  }
+
+  function twoClick() {
+    var x = +document.getElementById("three").textContent;
+    document.getElementById("one").value += x;
+  }
+
+  function threeClick() {
+    var x = +document.getElementById("four").textContent;
+
+    document.getElementById("one").value += x;
+  }
+
+  function fourClick() {
+    var x = +document.getElementById("five").textContent;
+    document.getElementById("one").value += x;
+  }
+
+  function fiveClick() {
+    var x = +document.getElementById("six").textContent;
+    document.getElementById("one").value += x;
+  }
+
+  function sixClick() {
+    var x = +document.getElementById("seven").textContent;
+    document.getElementById("one").value += x;
+  }
+
+  function sevenClick() {
+    var x = +document.getElementById("eight").textContent;
+    document.getElementById("one").value += x;
+  }
+
+  function eightClick() {
+    var x = +document.getElementById("nine").textContent;
+    document.getElementById("one").value += x;
+  }
+
+  function nineClick() {
+    var x = +document.getElementById("ten").textContent;
+    document.getElementById("one").value += x;
+  }
+
+  function zeroClick() {
+    var x = +document.getElementById("eleven").textContent;
+    document.getElementById("one").value += x;
+  }
+
+  function clrClick() {
+    document.getElementById("one").value = "";
+  }
+</script>

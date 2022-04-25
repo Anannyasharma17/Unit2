@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input id="name" type="text" placeholder="item-name">
+        <input id="quantity" type="number" placeholder="quantity">
+        <input type="submit" value="add-item">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Item-Name</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td>apple</td>
+                <td>20</td>
+            </tr> -->
+        </tbody>
+    </table>
+</body>
+</html>
+
+<script>
+    document.querySelector("form").addEventListener("submit", funform);
+
+
+    var arr = JSON.parse(localStorage.getItem("fruitarr")) || [];
+    create(arr);
+
+    function funform(event) {
+
+        event.preventDefault();
+        var items = document.getElementById("name").value;
+
+        var qty = document.getElementById("quantity").value;
+
+        var obj = {item : items, Quantity: qty};
+
+        arr.push(obj);
+
+        localStorage.setItem("fruitarr",JSON.stringify(arr));
+
+        var z = JSON.parse(localStorage.getItem("fruitarr"));
+
+        create(z);
+    }
+
+
+    function create(z) {
+        // console.log(z);
+
+        document.querySelector("tbody").innerHTML = "";
+
+        z.map(function (elements) {
+            var tr = document.createElement("tr");
+
+            var td1 = document.createElement("td");
+            td1.textContent = elements.item;
+
+            var td2 = document.createElement("td");
+            td2.textContent = elements.Quantity;
+
+            tr.append(td1, td2);
+
+            document.querySelector("tbody").append(tr);
+        });
+    }
+</script>

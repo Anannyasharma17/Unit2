@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karlo</title>
+    <style>
+      .box {
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        width: 100%;
+        /* background-color: seagreen; */
+      }
+      .box1 {
+        width: 40%;
+        /* background-color: darkcyan; */
+      }
+
+      .box2 {
+        width: 50%;
+        /* border: 1px solid blue; */
+        /* background-color: darkolivegreen; */
+      }
+
+      label {
+        display: block;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 70%;
+        height: 25%;
+        text-align: center;
+        /* border: 1px solid red; */
+      }
+
+      #ticket {
+        height: auto;
+      }
+
+      table {
+        width: 100%;
+        text-align: center;
+        border: 1px solid green;
+        table-layout: auto;
+      }
+
+      table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="box1">
+        <h1>Raise Ticket</h1>
+        <hr />
+        <form>
+          <label for="select_category">Choose option mentioned below</label>
+          <select id="select_category">
+            <option value="refund">Refund</option>
+            <option value="item missing">Item Missing</option>
+            <option value="order status">Order Status</option>
+            <option value="delivery">Delivery</option>
+            <option value="feedback">Feedback</option>
+          </select>
+
+          <label for="ticket">Ask your query here</label>
+          <textarea id="ticket" cols="30" rows="10"></textarea>
+
+          <label for="date">Select Date</label>
+          <input type="date" id="date" />
+
+          <label for="ticketnumber">Ticket Number</label>
+          <input type="number" id="ticketnumber" />
+
+          <input type="submit" value="Click here to Raise Ticket" />
+        </form>
+      </div>
+
+      <div class="box2">
+        <h1>Ticket Raised by You</h1>
+        <hr />
+        <select style="height: 30px;" id="number_sort" onchange="numberSort()">
+        <option  value="">Ticket Number</option>
+        <option value="low">Low to High</option>
+        <option value="high">High to Low</option>
+    </select>
+
+    <select style="height: 30px;" id="filter" onchange="filterSort()">
+    <option value="">Sort by category</option>
+    <option value="refund">By Refund</option>
+    <option value="order">By order status</option>
+    <option value="delivery">By Delivery</option>
+    <option value="feedback">By Feedback</option>
+    </select>
+        <table>
+          <thead>
+            <tr>
+              <th>Ticket Number</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  document.querySelector("form").addEventListener("submit", details);
+
+  var arr = JSON.parse(localStorage.getItem("Karlo")) || [];
+  see_details(arr);
+
+  function details(event) {
+    event.preventDefault();
+
+    var category = document.querySelector("#select_category").value;
+    var Ticket = document.querySelector("#ticket").value;
+    var date = document.querySelector("#date").value;
+    var Number = document.querySelector("#ticketnumber").value;
+
+    var obj = {
+      cat: category,
+      tic: Ticket,
+      Date: date,
+      num: Number,
+    };
+
+    arr.push(obj);
+     console.log(arr)
+
+    localStorage.setItem("Karlo", JSON.stringify(arr));
+    see_details(arr);
+  }
+
+  function see_details(arr) {
+    document.querySelector("tbody").innerHTML = "";
+
+    // console.log(arr)
+
+    arr.map(function (items) {
+      var tr = document.createElement("tr");
+
+      var td1 = document.createElement("td");
+      td1.textContent = items.num;
+
+      var td2 = document.createElement("td");
+      td2.textContent = items.cat;
+
+      var td3 = document.createElement("td");
+      td3.textContent = items.tic;
+
+      var td4 = document.createElement("td");
+      td4.textContent = items.Date;
+
+      tr.append(td1, td2, td3, td4);
+
+      document.querySelector("tbody").append(tr);
+    });
+
+  }
+
+  function numberSort(){
+    var choosed = document.querySelector("number_sort").value;
+
+    if (choosed == "low"){
+        arr.sort(function(a, b){
+            return(+a.number - +b.number);
+        });
+    }
+
+    if (choosed == "high"){
+        arr.sort(function(a, b){
+            return(+b.number - +a.number);
+        });
+    }
+
+    see_details(arr);
+  }
+</script>

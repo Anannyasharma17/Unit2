@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buttons</title>
+    <style>
+      #container {
+        width: 90%;
+        /* height: 100px; */
+        /* background-color: black; */
+        /* border: 1px solid red; */
+        padding: 3%;
+        display: flex;
+
+      }
+      button{
+          padding: 2%;
+          margin: 2%;
+          width: 15%;
+          font-size: large;
+          border-radius: 8px;
+          border: 0px;
+      }
+    </style>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  var box = document.createElement("div");
+  box.setAttribute("id", "container");
+  var arr = [
+    { name: "Primary", Bgcolor: "rgb(13,110,253)", color: "white" },
+    { name: "Seconday", Bgcolor: "rgb(108,117,125)", color: "white" },
+    { name: "Success", Bgcolor: "rgb(25,135,84)", color: "white" },
+    { name: "Danger", Bgcolor: "rgb(220,53,69)", color: "white" },
+    { name: "Warning", Bgcolor: "rgb(255,192,8)", color: "black" },
+    { name: "Info", Bgcolor: "rgb(17,202,240)", color: "black" },
+  ];
+
+  for (var i = 0; i < arr.length; i++) {
+    var btn = document.createElement("button");
+    btn.textContent = arr[i].name;
+    btn.style.backgroundColor = arr[i].Bgcolor;
+    btn.style.color = arr[i].color;
+    box.append(btn);
+  }
+
+  document.querySelector("body").append(box);
+</script>

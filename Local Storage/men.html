@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+        }
+
+        #div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+    </div>
+</body>
+</html>
+
+<script>
+    var data = JSON.parse(localStorage.getItem("men_data"));
+
+    whole_data(data);
+
+    function whole_data(data) {
+        data.map(function (items) {
+        var div = document.createElement("div");
+
+        var image = document.createElement("img");
+        image.setAttribute("src", items.image_url);
+
+        var name = document.createElement("h3");
+        name.textContent = items.name;
+
+        var div2 = document.createElement("div");
+        div2.setAttribute("id", "div");
+
+        var price = document.createElement("p");
+        price.textContent = items.price;
+
+        var strikedoffprice = document.createElement("p");
+        strikedoffprice.textContent = items.strikedoffprice;
+
+        div2.append(price, strikedoffprice);
+
+        div.append(image, name, div2);
+
+        document.querySelector(".container").append(div);
+        });
+    }
+    
+
+</script>

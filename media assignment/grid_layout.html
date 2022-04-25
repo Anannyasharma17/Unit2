@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Flex</title>
+    <style>
+        body{
+            background-image: url(https://us.123rf.com/450wm/mblach/mblach1609/mblach160900065/63955239-white-brick-wall-background.jpg?ver=6);
+        }
+      .cont {
+        margin-top: 5%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 150px);
+        /* border: 1px solid red; */
+        grid-gap: 20px;
+        justify-content: center;
+        
+      }
+      .cont > div {
+        /* border: 1px solid black; */
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        font-size: 20px;
+        padding: 10px;
+        background-color: white;
+        border-radius: 5px;
+      }
+      .menu {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bolder;
+      }
+      h5 {
+        margin: 0%;
+        text-align: left;
+        padding-left: 3%;
+        padding-top: 4%;
+        color: rgb(163, 152, 152);
+        font-family: sans-serif;
+      }
+
+      .price {
+        color: rgb(190, 149, 77);
+      }
+      p {
+        margin-top: 4%;
+        padding-left: 3%;
+        padding-right: 3%;
+        font-family: sans-serif;
+      }
+      @media screen and (min-width: 0px) and (max-width: 320px) {
+        .cont {
+          grid-template-columns: repeat(1, 1fr);
+          grid-template-rows: repeat(9, 150px);
+        }
+      }
+
+      @media screen and (min-width: 321px) and (max-width: 721px) {
+        .cont {
+          grid-template-columns: repeat(2, 2fr);
+          grid-template-rows: repeat(5, 150px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cont">
+      <div>
+        <div class="menu">
+          <p>Cappuccino</p>
+          <p class="price">$49</p>
+        </div>
+        <div>
+          <h5>
+            Usage of the internet is becoming more common due to rapid advance
+          </h5>
+        </div>
+      </div>
+      <div>
+        <div class="menu">
+          <p>Americano</p>
+          <p class="price">$49</p>
+        </div>
+        <div>
+          <h5>
+            Usage of the internet is becoming more common due to rapid advance
+          </h5>
+        </div>
+      </div>
+
+      <div>
+        <div class="menu">
+          <p>Expresso</p>
+          <p class="price">$49</p>
+        </div>
+        <div>
+          <h5>
+            Usage of the internet is becoming more common due to rapid advance
+          </h5>
+        </div>
+      </div>
+      <div>
+        <div class="menu">
+          <p>Macchiato</p>
+          <p class="price">$49</p>
+        </div>
+        <div>
+          <h5>
+            Usage of the internet is becoming more common due to rapid advance
+          </h5>
+        </div>
+      </div>
+      <div>
+        <div class="menu">
+          <p>Mocha</p>
+          <p class="price">$49</p>
+        </div>
+        <div>
+          <h5>
+            Usage of the internet is becoming more common due to rapid advance
+          </h5>
+        </div>
+      </div>
+      <div>
+        <div class="menu">
+          <p>Coffe Latte</p>
+          <p class="price">$49</p>
+        </div>
+        <div>
+          <h5>
+            Usage of the internet is becoming more common due to rapid advance
+          </h5>
+        </div>
+      </div>
+      <div>
+        <div class="menu">
+          <p>Piccalo Latte</p>
+          <p class="price">$49</p>
+        </div>
+        <div>
+          <h5>
+            Usage of the internet is becoming more common due to rapid advance
+          </h5>
+        </div>
+      </div>
+      <div>
+        <div class="menu">
+          <p>Ristretto</p>
+          <p class="price">$49</p>
+        </div>
+        <div>
+          <h5>
+            Usage of the internet is becoming more common due to rapid advance
+          </h5>
+        </div>
+      </div>
+      <div>
+        <div class="menu">
+          <p>Affogato</p>
+          <p class="price">$49</p>
+        </div>
+        <div>
+          <h5>
+            Usage of the internet is becoming more common due to rapid advance
+          </h5>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

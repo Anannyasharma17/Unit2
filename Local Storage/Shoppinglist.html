@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shoppinglist</title>
+  </head>
+  <body>
+    <form action="">
+      <input id="item" type="text" />
+      <input id="qty" type="number" />
+      <input type="submit" value="add item" />
+      <table>
+        <thead>
+          <tr>
+            <th>Item-Name</th>
+            <th>Quantity</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mango</td>
+            <td>20</td>
+            <td>
+              <button value="Delete">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </body>
+</html>
+
+<script>
+  document.querySelector("form").addEventListener("submit", list);
+  var arr = JSON.parse(localStorage.getItem("shopping_list")) || [];
+  creatTable(arr);
+
+  function list(event) {
+    event.preventDefault();
+    var Item = document.querySelector("#item").value;
+    var Quantity = document.querySelector("#qty").value;
+
+    var obj = {
+      itemss: Item,
+      quantity: Quantity,
+    };
+
+    arr.push(obj);
+    localStorage.setItem("shopping_list", JSON.stringify(arr));
+    creatTable(arr);
+  }
+
+  function creatTable(arr) {
+
+    document.querySelector("tbody").textContent = "";
+     arr.map(function (element, index){
+      var trr = document.createElement("tr");
+
+      var td1 = document.createElement("td");
+      td1.textContent = element.itemss;
+
+      var td2 = document.createElement("td");
+      td2.textContent = element.quantity;
+
+      var td3 = document.createElement("button");
+      td3.textContent = "Delete";
+      td3.addEventListener("click", function del(){
+        arr.splice(index, 1);
+        localStorage.setItem("shopping_list", JSON.stringify(arr));
+        creatTable(arr);
+      });
+
+      trr.append(td1, td2, td3);
+
+      document.querySelector("tbody").append(trr);
+     });
+    
+    }
+  
+</script>
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        #container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 20px;
+            margin: 2%;
+        }
+
+        #container > div {
+            border: 1px solid rgb(204, 204, 204);
+            padding: 3%;
+            border-radius: 10px;
+            box-shadow: rgba(230, 222, 115, 0.35) 0px 5px 15px;
+        }
+
+        h1 {
+            margin: 3%;
+            color: brown;
+        }
+
+        input {
+            margin-left: 40px;
+            height: 30px;
+        }
+
+        p {
+            font-size: 14px;
+            margin: 0 2%;
+        }
+
+        button {
+            background-color: cadetblue;
+            height: 30px;
+            margin-left: 1%;
+            width: 50%;
+            color: rgb(1, 32, 32);
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="navigation">
+        <div onclick="window.location.href='Home.html'" style="flex-grow: 2; font-size: xx-large;margin-left: 3%;text-align: left;">Amazon</div>
+        <div onclick="window.location.href='men.html'">Men's Wear</div>
+        <div onclick="window.location.href='women.html'">Women's Wear</div>
+        <div onclick="window.location.href='login.html'">Login</div>
+        <div onclick="window.location.href='Signup.html'">SignUP</div>
+    </div>
+
+    <div class="head">
+        <h1>Your Cart is empty!! Add some items now</h1>
+    </div>
+    
+    <div id="container">
+
+    </div>
+</body>
+</html>
+
+<script>
+    var cartItems = JSON.parse(localStorage.getItem("cartItem")) || [];
+
+    elements(cartItems);
+
+    if (cartItems.length > 0) {
+
+        var dis = document.createElement("input");
+        dis.setAttribute("placeholder","Enter Promocode");
+
+        var promo_button = document.createElement("button");
+        promo_button.textContent = "Apply";
+        promo_button.style.width = "7%";
+
+        var checkout_button = document.createElement("button");
+        checkout_button.textContent = "Proceed to Checkout";
+        checkout_button.style.width = "12%";
+        checkout_button.addEventListener("click", function() {
+            alert("Redirecting to Checkout Page");
+            window.location.href = "checkout.html";
+        })
+
+        var para = document.createElement("p");
+        para.textContent = "Enter your Promocode to get 30% discount";
+
+        promo_button.addEventListener("click", function discount() {
+            if(dis.value == "masai30") {
+                alert("Congratulations your promocode is applied");
+                para.textContent = "Congratulations 30% discount is applied";
+
+                var z = JSON.parse(localStorage.getItem("total"));
+                z = Math.floor(0.7*z);
+                localStorage.setItem("dis_total", JSON.stringify(z));
+                var dis_price = JSON.parse(localStorage.getItem("dis_total"));
+                document.querySelector("h1").textContent = `Total cost of items after 30% discount is ${dis_price}`;
+            }
+            else {
+                para.textContent = "Sorry!! wrong promocode";
+            }
+        });
+
+        document.querySelector(".head").append(dis, promo_button, para, checkout_button);
+    }
+
+    function elements(cartItems) {
+        document.querySelector("#container").innerHTML = "";
+
+        cartItems.map(function (items,index) {
+            var div1 = document.createElement("div");
+
+            var image = document.createElement("img");
+            image.setAttribute("src",items.image_url);
+
+            var name = document.createElement("h5");
+            name.textContent = items.name;
+
+            var div2 = document.createElement("div");
+            div2.setAttribute("id","div2");
+            
+            var price1 = document.createElement("p");
+            price1.textContent = `Offer Price:  ₹${items.price}`;
+
+            var strprice = document.createElement("p");
+            strprice.textContent = `₹${items.strikedoffprice}`;
+            strprice.style.textDecoration = "line-through"
+
+            div2.append(price1, strprice);
+
+            var btn = document.createElement("button");
+            btn.textContent = "Remove from cart";
+            btn.addEventListener("click",function (){
+                cartItems.splice(index, 1);
+                localStorage.setItem("cartItem",JSON.stringify(cartItems));
+                total_price(cartItems);
+                elements(cartItems);
+            });
+
+            div1.append(image, name, div2, btn);
+
+            document.querySelector("#container").append(div1);
+            localStorage.setItem("cartItem",JSON.stringify(cartItems));
+
+            total_price(cartItems);
+            if(cartItems.length > 0) {
+                var z = JSON.parse(localStorage.getItem("total"));
+                document.querySelector("h1").textContent = `Total cost of items is ${z}`;
+            }
+        });
+    };
+
+    function total_price(cartItems) {
+
+        if(cartItems.length == 0) {
+            document.querySelector("h1").textContent = `No item found in cart!!`;
+        }else {
+            total = cartItems.reduce(function (a, b) {
+                return (a + b.price);
+            },0);
+
+        localStorage.setItem("total", JSON.stringify(total));
+
+        }    
+    }
+</script>

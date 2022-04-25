@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <style>
+        .container {
+            background-color: rgb(248, 248, 207);
+            width: 400px;
+            padding: 2%;
+            /* height: 270px; */
+            margin: 12% auto;
+            text-align: center;
+            color: red;
+        }
+
+        button {
+            width: 70%;
+            margin: 5% 0;
+            height: 35px;
+            background-color: rgb(156, 61, 61);
+            color: white;
+            border-radius: 25px;
+        }
+
+        button:hover {
+            background-color: rgb(255, 225, 89);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="one"></h2>
+        <h2 id="two"></h2>
+        
+        <button onclick="window.location.href='cart.html'">Back</button>
+        <br><br>
+        <input type="checkbox" name="checkbox" id="check"/>
+        <label for="check">Click here to proceed for Payment Page</label>
+        <button id="payment">Proceed to Payment</button>
+        <p style="color: rgb(5, 87, 66); font-size: 14px;">Tick the check box and proceed to payment page</p>
+    </div>
+</body>
+</html>
+
+<script>
+    var dis_price = JSON.parse(localStorage.getItem("dis_total"));
+    document.querySelector("#one").textContent = `Total amount to be paid : ${dis_price}`;
+
+    var cartItems = JSON.parse(localStorage.getItem("cartItem"));
+    document.querySelector("#two").textContent = `Total items in your cart is : ${cartItems.length}`;
+
+    document.querySelector("#payment").addEventListener("click", function(){
+        var checkbox = document.querySelector("input[name=checkbox]");
+
+        if (checkbox.checked) {
+            // console.log("Checkbox is checked..");
+            alert("Redirecting you to payment gateway");
+            window.location.href="payment.html";
+        } else {
+            // console.log("Checkbox is not checked..");
+            document.querySelector("p").textContent = "Please tick the checkbox before proceeding to payment page";
+            document.querySelector("p").style.color = "red";
+        }
+    });
+</script>

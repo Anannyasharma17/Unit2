@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Wear</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        body {
+            background-color: rgb(252, 221, 255);
+        }
+        
+        #container {
+            display: grid;
+            margin: 0 2%;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 40px;
+            /* border-radius: 15px; */
+            /* background-color: white; */
+        }
+
+        #container > div {
+            border: 1px solid rgb(204, 204, 204);
+            padding: 3%;
+            border-radius: 10px;
+            box-shadow: rgba(170, 238, 247, 0.89) 0px 5px 15px;
+        }
+
+        img {
+            width: 100%;
+            /* height: 50%; */
+        }
+        #div2 {
+            display: flex;
+            justify-content: space-between;
+            /* border: solid; */
+            /* padding: 1%; */
+        }
+
+        #div2 > p:nth-child(2) {
+            text-decoration:line-through;
+        }
+
+        button{
+            height: 35px;
+            background-color: rgb(253, 191, 76);
+            color: rgb(48, 45, 11);
+            width: 35%;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: rgb(3, 32, 51);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="navigation">
+        <div onclick="window.location.href='Home.html'" style="flex-grow: 2; font-size: xx-large;margin-left: 3%;text-align: left;">Amazon</div>
+        <div onclick="window.location.href='men.html'">Men's Wear</div>
+        <div onclick="window.location.href='women.html'">Women's Wear</div>
+        <div onclick="window.location.href='login.html'">Login</div>
+        <div onclick="window.location.href='Signup.html'">SignUP</div>
+        <div id="cart_btn" onclick="window.location.href='cart.html'" style="color: tomato;"></div>
+    </div>
+    <div id="container">
+    </div>
+</body>
+</html>
+
+<script>
+    var z = JSON.parse(localStorage.getItem("women_Data"));
+
+    elements(z);
+
+    function elements(z) {
+        z.map(function (items) {
+            var div1 = document.createElement("div");
+
+            var image = document.createElement("img");
+            image.setAttribute("src",items.image_url);
+
+            var name = document.createElement("h5");
+            name.textContent = items.name;
+
+            var div2 = document.createElement("div");
+            div2.setAttribute("id","div2");
+            
+            var price1 = document.createElement("p");
+            price1.textContent = `Offer Price:  ₹${items.price}`;
+
+            var strprice = document.createElement("p");
+            strprice.textContent = `₹${items.strikedoffprice}`;
+
+            div2.append(price1, strprice);
+
+            var btn = document.createElement("button");
+            btn.textContent = "Add to cart";
+            btn.addEventListener("click",function (){
+                cart(items);
+            });
+
+            div1.append(image, name, div2, btn);
+
+            document.querySelector("#container").append(div1);
+        });
+    };
+
+    var cart_arr = JSON.parse(localStorage.getItem("cartItem")) || [];
+
+    if(cart_arr.length > 0) {
+        document.getElementById("cart_btn").textContent = `${cart_arr.length} item added Go to cart`;
+    }
+    else {
+        document.getElementById("cart_btn").textContent = "";
+    }
+
+    function cart(items) {        
+        cart_arr.push(items);
+        localStorage.setItem("cartItem",JSON.stringify(cart_arr));
+        document.getElementById("cart_btn").textContent = `${cart_arr.length} items added Go to cart`;
+    }
+</script>

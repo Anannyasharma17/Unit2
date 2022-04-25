@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Montserrat:wght@200&family=Roboto:wght@300&family=Rubik&family=Spline+Sans:wght@400;500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+}
+
+#navigation {
+    height: 60px;
+    background-color: rgb(43, 77, 77);
+    width: 100%;
+    /* padding: 2%; */
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: rgb(190, 190, 190);
+    /* position: fixed; */
+    opacity: 0.9;
+}
+
+#navigation >div {
+    width: 10%;
+    /* border: tomato solid; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+}
+
+#navigation > div:hover {
+    color: white;
+    transition: 500ms;
+    cursor:pointer;
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        .container {
+            background-color: rgb(231, 253, 209);
+            width: 400px;
+            padding: 2%;
+            /* height: 270px; */
+            margin: 2% auto;
+            /* text-align: center; */
+            color: rgb(0, 0, 0);
+        }
+
+        button {
+            width: 70%;
+            margin: 5% 0;
+            height: 35px;
+            background-color: rgb(0, 105, 40);
+            color: black;
+            border-radius: 25px;
+            color: white;
+        }
+
+        button:hover {
+            background-color: rgb(0, 59, 0);
+        }
+
+        input {
+            width: 100%;;
+            height: 34px;
+            display: block;
+            margin-bottom: 6%;
+            border: 1px solid rgb(3, 80, 151);
+            border-radius: 5px;
+        }
+
+        label {
+            color: rgb(43, 43, 43);
+            display: block;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="one" style="text-align: center;"></h2>
+
+        <form>
+            <label for="name">Enter Your Name On Card</label>
+            <input type="text" id="name" placeholder="Enter Any Name">
+
+            <label for="name">Enter Card Number</label>
+            <input type="number" id="card_num" placeholder="use - 12345">
+
+            <label for="name">Enter Expiry Date  (use-15-01-2025)</label>
+            <input type="date" id="expiry" placeholder="15-01-2025">
+
+            <label for="name">Enter CVV</label>
+            <input type="number" id="cvv" placeholder="use - 566">
+
+            <label for="name">Enter Mobile Number</label>
+            <input type="number" id="mbl" placeholder="use - 12345">
+
+            <div style="display: flex;">
+                <input type="checkbox" id="check" style="width: 12px; height: 12px; margin-right: 3%;">
+                <label for="check">I accept the terms & conditions</label>
+            </div>
+
+            <input type="submit" id="submit" value="Pay Now">
+            <p></p>
+        </form>
+        <div class="otpdiv">
+            <!-- <input type="text"> -->
+        </div>
+        <div class="final">
+
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    var arr = [{card_num : "12345", expiry : "2025-01-15", cvv : "566", mbl : "12345"} ,
+            {card_num : "54321", expiry : "2025-01-15", cvv : "665", mbl : "54321"}
+            ];
+    localStorage.setItem("card_details",JSON.stringify(arr));
+
+    // console.log(arr);
+
+    var dis_price = JSON.parse(localStorage.getItem("dis_total"));
+    document.querySelector("#one").textContent = `Total amount to be paid : ${dis_price}`;
+
+    document.querySelector("form").addEventListener("submit", function(event){
+        event.preventDefault();
+        var checkbox = document.querySelector("input[type=checkbox]");
+
+        if (checkbox.checked) {
+
+            if(data_validate()){
+                otp_fun();
+            }
+            else {
+                document.querySelector(".otpdiv").innerHTML = "";
+                document.querySelector("p").textContent = "Sorry!! Wrong Credentials";
+                document.querySelector("p").style.color = "red";
+            }
+        }
+            
+        else {
+            document.querySelector("p").textContent = "Please tick the checkbox before making payment";
+            document.querySelector("p").style.color = "red";
+            document.querySelector(".otpdiv").innerHTML = "";
+        }
+    });
+
+    function otp_fun() {
+        document.querySelector(".otpdiv").innerHTML = "";
+        // console.log("Checkbox is checked..");
+        alert("OTP is sent to your mobile number");
+        document.querySelector("p").textContent = "OTP is sent to your mobile number (use-1234)";
+        document.querySelector("p").style.color = "red";
+
+        var input = document.createElement("input");
+        input.setAttribute("id","otpbox");
+        input.setAttribute("placeholder","Enter OTP");
+
+        var btn = document.createElement("button");
+        btn.textContent = "Validate OTP";
+
+        document.querySelector(".otpdiv").append(input, btn);
+
+        btn.addEventListener("click", function() {
+            document.querySelector(".final").innerHTML = "";
+            if(input.value == "1234") {
+                var para = document.createElement("p");
+                alert("Payment Successful");
+                para.textContent = "Thank you for shopping with us";
+                document.querySelector(".final").append(para);
+            }
+            else {
+                var para = document.createElement("p");
+                para.textContent = "Sorry!! wrong OTP";
+                para.style.color = "red";
+                document.querySelector(".final").append(para);
+            }
+        });
+    }
+
+    function data_validate() {
+        var details = JSON.parse(localStorage.getItem("card_details"));
+
+        var card_number = document.querySelector("#card_num").value;
+
+        var exp_date = document.querySelector("#expiry").value;
+
+        var cvv1 = document.querySelector("#cvv").value;
+
+        var mble = document.querySelector("#mbl").value;
+
+        // console.log(card_number, exp_date, cvv1, mble);
+
+        var count = 0;
+        details.map(function (items) {
+            if((items.card_num == card_number) && (items.expiry == exp_date) && (items.cvv == cvv1) && (items.mbl == mble)) {
+                count++;
+            }
+        });
+
+        if(count == 0) {
+            return false;
+        }
+        else {
+            return true;
+        }       
+    }
+
+</script>
+

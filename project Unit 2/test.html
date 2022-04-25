@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      article {
+        height: 600px;
+        width: 100%;
+        /* border: solid black; */
+        margin: auto;
+        display: flex;
+      }
+      article > div {
+        border: solid red;
+        height: 100%;
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        
+      }
+      #one {
+        height: 12%;
+        /* border: solid; */
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+        font-weight: 400;
+        font-size: 13px;
+      }
+
+      #one > div {
+        /* border: 1px solid red; */
+      }
+
+      #tick1 , #tick2 {
+          width: 22%;
+          /* border: solid olive; */
+          color: rgb(47,112,0);
+          
+      }
+      input{
+          height: 40px;
+          border-radius: 3px;
+          margin-top: 0.5%;
+          border: 1px solid rgb(148, 147, 147);
+          /* border: none; */
+      }
+      input:focus{
+        border: 4px solid rgb(184,0,0);
+      }
+      #two {
+        height: 6%;
+        /* border: solid; */
+        width: 97%;
+        padding-left: 3%;
+        font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        color:rgb(97, 97, 97);
+      }
+      #three {
+        height: 12%;
+        /* border: solid; */
+        width: 97%;
+        padding-left: 3%;
+        font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        color:rgb(97, 97, 97);
+      }
+      #four {
+        height: 12%;
+        /* border: solid; */
+        width: 97%;
+        padding-left: 3%;
+        font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        color:rgb(97, 97, 97);
+      }
+      #five {
+        height: 15%;
+        /* border: solid;  */
+        width: 97%;
+        padding-left: 3%;
+        font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        color:rgb(97, 97, 97);
+      }
+      #six {
+        height: 15%;
+        /* border: solid; */
+        width: 97%;
+        display: flex;
+        padding-left: 3%;
+        font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        color:rgb(97, 97, 97);
+      }
+
+      #six1 input {
+          width: 20%;
+      }
+
+      #six1 , #six2{
+          width: 30%;
+      }
+
+      label{
+          display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <div>
+        <div id="one">
+          <div style="display: flex;">
+            <div style="width: 3%;"><span class="material-icons"> folder </span></div>
+            <div id="tick1">
+              <span class="material-icons" style="font-weight: 900;"> done </span> We use secure
+              transmission
+            </div>
+            <div id="tick2">
+              <span class="material-icons" style="font-weight: 900;"> done </span> We protect your personal
+              information
+            </div>
+          </div>
+          <div style="padding-left: 3%;"><button>Debit/Credit card</button> <button>Credit Card</button></div>
+        </div>
+        <div id="two">
+          <a href="https://www.shift4shop.com/credit-card-logos.html"
+            ><img
+              alt="Credit Card Logos"
+              title="Credit Card Logos"
+              src="https://www.shift4shop.com/images/credit-card-logos/cc-sm-5_b.png"
+              width="249"
+              height="28"
+              border="0"
+          /></a>
+        </div>
+        <div id="three">
+          <label for="">Name on Card <span style="color: red"><sup>*</sup></span></label>
+          <input type="text" style="width: 60%;"/>
+          <p></p>
+        </div>
+        <div id="four">
+          <label for="">Debit/Credit card number <span style="color: red"><sup>*</sup></span></label>
+          <input type="text" style="width: 40%;"/>
+          <p></p>
+        </div>
+        <div id="five">
+          <label for="">Expiration date <span style="color: red"><sup>*</sup></span></label>
+          <p></p>
+          <select name="dob-month" class="datefield month" style="width: 90px; height: 45px;">
+            <option value="">Month</option>
+            <option value="01">01-Jan</option>
+            <option value="02">02-Feb</option>
+            <option value="03">03-Mar</option>
+            <option value="04">04-Apr</option>
+            <option value="05">05-May</option>
+            <option value="06">06-Jun</option>
+            <option value="07">07-Jul</option>
+            <option value="08">08-Aug</option>
+            <option value="09">09-Sep</option>
+            <option value="10">10-Oct</option>
+            <option value="11">11-Nov</option>
+            <option value="12">12-Dec</option>
+          </select>
+          <select name="dob-year" class="datefield year" style="width: 90px; height: 45px;">
+            <option value="">Year</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2030</option>
+            <option value="2031">2031</option>
+            <option value="2032">2032</option>
+            <option value="2033">2033</option>
+            <option value="2034">2034</option>
+            <option value="2035">2035</option>
+            <option value="2036">2036</option>
+            <option value="2037">2037</option>
+            <option value="2038">2038</option>
+            <option value="2039">2039</option>
+            <option value="2040">2040</option>
+          </select>
+        </div>
+        <div id="six">
+            <div id="six1">
+                <label for="">Security code <span style="color: red"><sup>*</sup></span></label>
+                <input type="text" name="" id="">
+                <p></p>
+            </div>
+            <div id="six2">
+                <label for="">Billing ZIP code<span style="color: red"><sup>*</sup></span></label>
+                <input type="text" name="" id="">
+                <p></p>
+            </div>
+        </div>
+      </div>
+    </article>
+  </body>
+</html>
